@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/chatter2.wav-552c681f6a726dc31ca50d8c08d0c559.sample"
+
+[deps]
+
+source_file="res://menu/chatter2.wav"
+dest_files=[ "res://.import/chatter2.wav-552c681f6a726dc31ca50d8c08d0c559.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

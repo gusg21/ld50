@@ -1,0 +1,309 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://menu/menu-bg.png" type="Texture" id=1]
+[ext_resource path="res://elliott_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://menu/menu-border.png" type="Texture" id=3]
+[ext_resource path="res://menu/Menu.gd" type="Script" id=4]
+[ext_resource path="res://menu/selection.png" type="Texture" id=5]
+[ext_resource path="res://menu/controller-warn.png" type="Texture" id=6]
+[ext_resource path="res://menu/ControllerWarn.gd" type="Script" id=7]
+[ext_resource path="res://menu/BG.gd" type="Script" id=8]
+[ext_resource path="res://player/green_player_tex.tres" type="Texture" id=9]
+[ext_resource path="res://menu/desk.png" type="Texture" id=10]
+[ext_resource path="res://menu/MenuPlayer.gd" type="Script" id=11]
+[ext_resource path="res://menu/menu-fade.png" type="Texture" id=12]
+[ext_resource path="res://menu/MenuFade.gd" type="Script" id=13]
+[ext_resource path="res://menu/menu-logo.png" type="Texture" id=14]
+[ext_resource path="res://menu/MenuCutscene.gd" type="Script" id=15]
+[ext_resource path="res://menu/Knock.tscn" type="PackedScene" id=16]
+[ext_resource path="res://character/characters.png" type="Texture" id=17]
+[ext_resource path="res://menu/IRS.gd" type="Script" id=18]
+[ext_resource path="res://menu/Selection (1).mp3" type="AudioStream" id=19]
+[ext_resource path="res://menu/Game Start.wav" type="AudioStream" id=20]
+[ext_resource path="res://menu/Menu Backout.wav" type="AudioStream" id=21]
+[ext_resource path="res://menu/chatter3.wav" type="AudioStream" id=22]
+[ext_resource path="res://menu/chatter2.wav" type="AudioStream" id=23]
+[ext_resource path="res://menu/chatter1.wav" type="AudioStream" id=24]
+[ext_resource path="res://menu/LD50 Door SFX (1).wav" type="AudioStream" id=25]
+[ext_resource path="res://camera/Camera.gd" type="Script" id=26]
+[ext_resource path="res://menu/LD50 Window SFX (1).wav" type="AudioStream" id=27]
+[ext_resource path="res://menu/Dog Explosion.wav" type="AudioStream" id=28]
+[ext_resource path="res://menu/menu-flash.png" type="Texture" id=29]
+[ext_resource path="res://menu/menu-bg-ruined.png" type="Texture" id=30]
+[ext_resource path="res://paper/Paper.tscn" type="PackedScene" id=31]
+[ext_resource path="res://menu/smoke-particle.png" type="Texture" id=32]
+[ext_resource path="res://game/Level1.tscn" type="PackedScene" id=33]
+[ext_resource path="res://player/pink_player_tex.tres" type="Texture" id=34]
+[ext_resource path="res://menu/Office Ambience.wav" type="AudioStream" id=35]
+[ext_resource path="res://menu/SecondaryPlayer.gd" type="Script" id=36]
+[ext_resource path="res://player/blue_player_tex.tres" type="Texture" id=37]
+[ext_resource path="res://player/orange_player_tex.tres" type="Texture" id=38]
+[ext_resource path="res://menu/tax_evasion_title_screen_small.mp3" type="AudioStream" id=39]
+[ext_resource path="res://menu/BGM.gd" type="Script" id=40]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 17 )
+region = Rect2( 106, 113, 13, 11 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.764706, 0.994318 ), 0.0, 0.0, 0, 0, Vector2( 0.995098, 0.0306818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 17 )
+region = Rect2( 53, 61, 21, 19 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 21, 19 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 17 )
+region = Rect2( 33, 65, 7, 7 )
+
+[sub_resource type="Curve" id=6]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.75, 5.72726 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.745098, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.735294, 0.985227 ), -1.85455, -1.85455, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="HUD"]
+position = Vector2( 170, 120 )
+script = ExtResource( 26 )
+
+[node name="Flash" type="Sprite" parent="HUD/Camera2D"]
+visible = false
+z_index = 1000
+z_as_relative = false
+texture = ExtResource( 29 )
+
+[node name="Menu-fade" type="Sprite" parent="HUD"]
+modulate = Color( 1, 1, 1, 0 )
+z_index = 1000
+z_as_relative = false
+texture = ExtResource( 12 )
+centered = false
+script = ExtResource( 13 )
+
+[node name="Menu-border" type="Sprite" parent="HUD"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Controller-warn" type="Sprite" parent="HUD"]
+visible = false
+position = Vector2( 81, 184 )
+texture = ExtResource( 6 )
+script = ExtResource( 7 )
+
+[node name="Menu" type="Node2D" parent="HUD"]
+pause_mode = 2
+script = ExtResource( 4 )
+
+[node name="Selection" type="Sprite" parent="HUD/Menu"]
+position = Vector2( 70, 218 )
+texture = ExtResource( 5 )
+
+[node name="o0" type="Label" parent="HUD/Menu"]
+margin_left = 29.0
+margin_top = 210.0
+margin_right = 110.0
+margin_bottom = 225.0
+custom_colors/font_color = Color( 0.698039, 0.862745, 0.937255, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "CREDITS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="o1" type="Label" parent="HUD/Menu"]
+margin_left = 231.0
+margin_top = 210.0
+margin_right = 312.0
+margin_bottom = 225.0
+custom_colors/font_color = Color( 0.698039, 0.862745, 0.937255, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "QUIT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="o2" type="Label" parent="HUD/Menu"]
+margin_left = 130.0
+margin_top = 210.0
+margin_right = 211.0
+margin_bottom = 225.0
+custom_fonts/font = ExtResource( 2 )
+text = "EVADE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="HUD/Menu"]
+
+[node name="Menu-logo" type="Sprite" parent="HUD/Menu"]
+position = Vector2( 170, 23 )
+texture = ExtResource( 14 )
+
+[node name="Switch" type="AudioStreamPlayer" parent="HUD/Menu"]
+stream = ExtResource( 19 )
+
+[node name="Select" type="AudioStreamPlayer" parent="HUD/Menu"]
+stream = ExtResource( 20 )
+
+[node name="Back" type="AudioStreamPlayer" parent="HUD/Menu"]
+stream = ExtResource( 21 )
+
+[node name="OfficeAmbience" type="AudioStreamPlayer" parent="HUD/Menu"]
+stream = ExtResource( 35 )
+volume_db = -6.992
+autoplay = true
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enable = true
+
+[node name="BG" type="Sprite" parent="BG"]
+position = Vector2( 32, 48 )
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 8 )
+
+[node name="Player" type="Sprite" parent="BG/BG"]
+position = Vector2( 162, 112 )
+texture = ExtResource( 9 )
+offset = Vector2( 0, -9.5 )
+script = ExtResource( 11 )
+
+[node name="Timer" type="Timer" parent="BG/BG/Player"]
+wait_time = 0.774
+autostart = true
+
+[node name="Tween" type="Tween" parent="BG/BG/Player"]
+
+[node name="Pink" type="Sprite" parent="BG/BG/Player"]
+position = Vector2( 0, -25 )
+texture = ExtResource( 34 )
+script = ExtResource( 36 )
+player_num = 2
+
+[node name="Pink2" type="Sprite" parent="BG/BG/Player"]
+position = Vector2( 0, -41 )
+texture = ExtResource( 37 )
+script = ExtResource( 36 )
+player_num = 3
+
+[node name="Pink3" type="Sprite" parent="BG/BG/Player"]
+position = Vector2( 0, -56 )
+texture = ExtResource( 38 )
+script = ExtResource( 36 )
+player_num = 4
+
+[node name="Desk" type="Sprite" parent="BG/BG"]
+position = Vector2( 188, 99 )
+texture = ExtResource( 10 )
+
+[node name="MusicParticles" type="CPUParticles2D" parent="BG/BG"]
+position = Vector2( 139, 70 )
+amount = 2
+texture = SubResource( 7 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+scale_amount_curve = SubResource( 8 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="BG/BG"]
+stream = ExtResource( 39 )
+volume_db = -11.0
+autoplay = true
+script = ExtResource( 40 )
+particles_path = NodePath("../MusicParticles")
+
+[node name="Cutscene Controller" type="Node2D" parent="BG"]
+script = ExtResource( 15 )
+knock_scene = ExtResource( 16 )
+game_scene = ExtResource( 33 )
+ruined_tex = ExtResource( 30 )
+ruined_irs = SubResource( 3 )
+bg_path = NodePath("../BG")
+desk_path = NodePath("../BG/Desk")
+paper_scene = ExtResource( 31 )
+
+[node name="Knocks" type="Node2D" parent="BG/Cutscene Controller"]
+position = Vector2( 304, 145 )
+
+[node name="IRS" type="Sprite" parent="BG/Cutscene Controller"]
+visible = false
+position = Vector2( 296, 160 )
+texture = SubResource( 1 )
+offset = Vector2( 0, -9.5 )
+script = ExtResource( 18 )
+
+[node name="Angry" type="CPUParticles2D" parent="BG/Cutscene Controller/IRS"]
+position = Vector2( -2, -22 )
+emitting = false
+amount = 3
+lifetime = 0.25
+texture = SubResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 10, 5 )
+gravity = Vector2( 0, 0 )
+angle_curve = SubResource( 6 )
+scale_amount_curve = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="BG/Cutscene Controller"]
+
+[node name="Chatter1" type="AudioStreamPlayer" parent="BG/Cutscene Controller"]
+stream = ExtResource( 24 )
+
+[node name="Chatter2" type="AudioStreamPlayer" parent="BG/Cutscene Controller"]
+stream = ExtResource( 23 )
+
+[node name="Chatter3" type="AudioStreamPlayer" parent="BG/Cutscene Controller"]
+stream = ExtResource( 22 )
+
+[node name="Door" type="AudioStreamPlayer" parent="BG/Cutscene Controller"]
+stream = ExtResource( 25 )
+
+[node name="Window" type="AudioStreamPlayer" parent="BG/Cutscene Controller"]
+stream = ExtResource( 27 )
+
+[node name="Dog" type="AudioStreamPlayer" parent="BG/Cutscene Controller"]
+stream = ExtResource( 28 )
+
+[node name="JumpLocation" type="Node2D" parent="BG/Cutscene Controller"]
+position = Vector2( 118, 160 )
+
+[node name="PaperTL" type="Node2D" parent="BG/Cutscene Controller"]
+position = Vector2( 101, 117 )
+
+[node name="PaperBR" type="Node2D" parent="BG/Cutscene Controller"]
+position = Vector2( 101, 117 )
+
+[node name="Explosion" type="CPUParticles2D" parent="BG/Cutscene Controller"]
+position = Vector2( 111, 118 )
+emitting = false
+amount = 30
+lifetime = 3.0
+preprocess = 20.0
+texture = ExtResource( 32 )
+emission_shape = 2
+emission_rect_extents = Vector2( 10, 2 )
+gravity = Vector2( 0, -10 )
+scale_amount_curve = SubResource( 2 )
+
+[connection signal="timeout" from="BG/BG/Player/Timer" to="BG/BG/Player" method="_on_Timer_timeout"]
+[connection signal="tween_all_completed" from="BG/BG/Player/Tween" to="BG/BG/Player" method="_on_Tween_tween_all_completed"]

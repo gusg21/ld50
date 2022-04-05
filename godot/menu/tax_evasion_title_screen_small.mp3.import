@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tax_evasion_title_screen_small.mp3-f976fa05bab2d82443c766dee3bf9521.mp3str"
+
+[deps]
+
+source_file="res://menu/tax_evasion_title_screen_small.mp3"
+dest_files=[ "res://.import/tax_evasion_title_screen_small.mp3-f976fa05bab2d82443c766dee3bf9521.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

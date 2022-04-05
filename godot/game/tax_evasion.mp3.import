@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tax_evasion.mp3-9a6e101d6e0b8241b7c724cef357607c.mp3str"
+
+[deps]
+
+source_file="res://game/tax_evasion.mp3"
+dest_files=[ "res://.import/tax_evasion.mp3-9a6e101d6e0b8241b7c724cef357607c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

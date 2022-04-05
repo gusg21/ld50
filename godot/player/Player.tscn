@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://shadow/Shadow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/Player.gd" type="Script" id=2]
+[ext_resource path="res://player/LD50 Splat SFX.wav" type="AudioStream" id=3]
+[ext_resource path="res://player/green_player_tex.tres" type="Texture" id=4]
+[ext_resource path="res://player/green_player_squish_tex.tres" type="Texture" id=5]
+[ext_resource path="res://player/LD50 Falling SFX.wav" type="AudioStream" id=6]
+[ext_resource path="res://player/pickup1.wav" type="AudioStream" id=7]
+[ext_resource path="res://player/pickup3.wav" type="AudioStream" id=8]
+[ext_resource path="res://player/pickup2.wav" type="AudioStream" id=9]
+[ext_resource path="res://character/characters.png" type="Texture" id=10]
+[ext_resource path="res://player/leaf-particle.png" type="Texture" id=11]
+[ext_resource path="res://player/Leafblower Loop.wav" type="AudioStream" id=12]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 10 )
+region = Rect2( 6, 57, 28, 9 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.707182, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+z_as_relative = false
+collision_layer = 2
+script = ExtResource( 2 )
+squish_tex = ExtResource( 5 )
+
+[node name="GFX" type="Sprite" parent="."]
+position = Vector2( 0, 1 )
+z_index = 1
+texture = ExtResource( 4 )
+offset = Vector2( 1, -10.5 )
+
+[node name="Shadow20" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -0.5 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Splat" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+
+[node name="Falling" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+volume_db = -15.066
+
+[node name="Pickup" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+
+[node name="Pickup2" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 9 )
+
+[node name="Pickup3" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 8 )
+
+[node name="Leafblower" type="Sprite" parent="."]
+position = Vector2( -3, -6 )
+z_index = 1
+texture = SubResource( 4 )
+offset = Vector2( -8, 0 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Leafblower"]
+show_behind_parent = true
+position = Vector2( -22, 2 )
+emitting = false
+amount = 200
+lifetime = 0.15
+local_coords = false
+texture = ExtResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 2 )
+flag_align_y = true
+direction = Vector2( -1, 0 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 400.0
+color_ramp = SubResource( 5 )
+
+[node name="Leafblow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -13.0
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

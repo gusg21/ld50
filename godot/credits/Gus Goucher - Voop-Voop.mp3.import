@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Gus Goucher - Voop-Voop.mp3-4632d7451852828b09b2513d39e86255.mp3str"
+
+[deps]
+
+source_file="res://credits/Gus Goucher - Voop-Voop.mp3"
+dest_files=[ "res://.import/Gus Goucher - Voop-Voop.mp3-4632d7451852828b09b2513d39e86255.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

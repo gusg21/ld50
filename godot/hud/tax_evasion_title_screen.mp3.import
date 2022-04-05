@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tax_evasion_title_screen.mp3-6286b27eb0b38c153270dcd2db83befc.mp3str"
+
+[deps]
+
+source_file="res://hud/tax_evasion_title_screen.mp3"
+dest_files=[ "res://.import/tax_evasion_title_screen.mp3-6286b27eb0b38c153270dcd2db83befc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

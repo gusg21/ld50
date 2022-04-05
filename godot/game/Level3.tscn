@@ -1,0 +1,326 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://bg/level3bg.png" type="Texture" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/green_player_tex.tres" type="Texture" id=3]
+[ext_resource path="res://player/blue_player_squish_tex.tres" type="Texture" id=4]
+[ext_resource path="res://camera/Camera.gd" type="Script" id=5]
+[ext_resource path="res://paperspawner/PaperSpawner.gd" type="Script" id=6]
+[ext_resource path="res://paper/Paper.tscn" type="PackedScene" id=7]
+[ext_resource path="res://hud/building-hud.png" type="Texture" id=8]
+[ext_resource path="res://hud/level-border.png" type="Texture" id=9]
+[ext_resource path="res://player/pink_player_tex.tres" type="Texture" id=10]
+[ext_resource path="res://character/characters.png" type="Texture" id=11]
+[ext_resource path="res://player/blue_player_tex.tres" type="Texture" id=12]
+[ext_resource path="res://player/orange_player_tex.tres" type="Texture" id=13]
+[ext_resource path="res://player/orange_player_squish_tex.tres" type="Texture" id=14]
+[ext_resource path="res://game/City Ambience.wav" type="AudioStream" id=15]
+[ext_resource path="res://pedestrian/PedestrianSpawner.gd" type="Script" id=16]
+[ext_resource path="res://pedestrian/Pedestrian.tscn" type="PackedScene" id=17]
+[ext_resource path="res://pedestrian/PedestrianTrap.gd" type="Script" id=18]
+[ext_resource path="res://pedestrian/Pedestrian2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://game/GameBGM.gd" type="Script" id=20]
+[ext_resource path="res://game/tax_evasion.mp3" type="AudioStream" id=21]
+[ext_resource path="res://game/IRS.gd" type="Script" id=22]
+[ext_resource path="res://game/Building HUD.gd" type="Script" id=23]
+[ext_resource path="res://elliott.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://hud/DocsDestroyed.gd" type="Script" id=25]
+[ext_resource path="res://paper/DestroyParticle.tscn" type="PackedScene" id=26]
+[ext_resource path="res://hud/alert.wav" type="AudioStream" id=27]
+[ext_resource path="res://hud/big-display.png" type="Texture" id=28]
+[ext_resource path="res://hud/BigDisplay.gd" type="Script" id=29]
+[ext_resource path="res://game/WinControl.gd" type="Script" id=30]
+[ext_resource path="res://credits/Credits.tscn" type="PackedScene" id=31]
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+font_data = ExtResource( 24 )
+
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 31, 16, 0, 0, 0, 0, -1, 32, 0, 0, 0, 0, 31, 48, 0, 0, 0, 0, -1, 64, 0, 0, 0, 0, 31, 80, 0, 0, 0, 0, -1, 96, 0, 0, 0, 0, 31, 112, 0, 0, 0, 0, -1, 128, 0, 0, 0, 0, 31, 144, 0, 0, 0, 0, -1, 160, 0, 0, 0, 0, 31, 176, 0, 0, 0, 0, -1, 192, 0, 0, 0, 0, 31, 208, 0, 0, 0, 0, 11, 218 )
+}
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 11 )
+region = Rect2( 103, 23, 12, 10 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 11 )
+region = Rect2( 42, 58, 4, 10 )
+
+[sub_resource type="DynamicFont" id=10]
+outline_size = 1
+font_data = ExtResource( 24 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 65, 29.125 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 15.5, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22, 40.75 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 77, 19, 25, 31 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 19, 41 )
+
+[node name="Level3" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="BigDisplay" type="Node2D" parent="HUD"]
+pause_mode = 2
+script = ExtResource( 29 )
+
+[node name="BG" type="Sprite" parent="HUD/BigDisplay"]
+visible = false
+position = Vector2( 161, 159 )
+texture = ExtResource( 28 )
+
+[node name="Text" type="Label" parent="HUD/BigDisplay"]
+visible = false
+margin_left = 55.0
+margin_top = 138.0
+margin_right = 255.0
+margin_bottom = 178.0
+rect_pivot_offset = Vector2( 100, 20 )
+custom_fonts/font = SubResource( 12 )
+text = "TEST"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="HUD/BigDisplay"]
+
+[node name="Building HUD" type="Sprite" parent="HUD"]
+position = Vector2( 316, 120 )
+texture = ExtResource( 8 )
+script = ExtResource( 23 )
+
+[node name="Path" type="Path2D" parent="HUD/Building HUD"]
+position = Vector2( -15, -105 )
+curve = SubResource( 9 )
+
+[node name="Follow" type="PathFollow2D" parent="HUD/Building HUD/Path"]
+position = Vector2( -1, 0 )
+rotation = 0.463648
+
+[node name="IRS" type="Node2D" parent="HUD/Building HUD"]
+position = Vector2( -15, -105 )
+script = ExtResource( 22 )
+follow_path = NodePath("../Path/Follow")
+
+[node name="GFX" type="Sprite" parent="HUD/Building HUD/IRS"]
+texture = SubResource( 8 )
+offset = Vector2( 0, -5 )
+flip_h = true
+
+[node name="Alert" type="CPUParticles2D" parent="HUD/Building HUD/IRS"]
+position = Vector2( 0, -10 )
+amount = 3
+local_coords = false
+texture = SubResource( 11 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 60.0
+damping = 100.0
+
+[node name="AlertSound" type="AudioStreamPlayer" parent="HUD/Building HUD/IRS"]
+stream = ExtResource( 27 )
+volume_db = -7.866
+
+[node name="Level-border" type="Sprite" parent="HUD"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="Docs Destroyed" type="Label" parent="HUD"]
+margin_left = 5.0
+margin_top = 212.0
+margin_right = 165.0
+margin_bottom = 237.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "Documents Destroyed: 
+0 / 900"
+valign = 2
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Win Control" type="Node2D" parent="HUD"]
+pause_mode = 2
+script = ExtResource( 30 )
+next_level = ExtResource( 31 )
+level_text = "LEVEL 3 [SPEED ROUND]"
+level_length = 50.0
+doc_goal = 375
+
+[node name="Timer" type="Timer" parent="HUD/Win Control"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Game" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Level1Bg" type="Sprite" parent="Game"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Solid" type="StaticBody2D" parent="Game/Level1Bg"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Collider" type="CollisionShape2D" parent="Game/Level1Bg/Solid"]
+position = Vector2( 146, 2.875 )
+shape = SubResource( 1 )
+
+[node name="Collder" type="CollisionShape2D" parent="Game/Level1Bg/Solid"]
+position = Vector2( 96, 144 )
+shape = SubResource( 14 )
+
+[node name="Collder2" type="CollisionShape2D" parent="Game/Level1Bg/Solid"]
+position = Vector2( 192.5, 80 )
+shape = SubResource( 13 )
+
+[node name="Collder3" type="CollisionShape2D" parent="Game/Level1Bg/Solid"]
+position = Vector2( 96, 80 )
+shape = SubResource( 13 )
+
+[node name="Collder4" type="CollisionShape2D" parent="Game/Level1Bg/Solid"]
+position = Vector2( 192.5, 144 )
+shape = SubResource( 13 )
+
+[node name="Solid2" type="StaticBody2D" parent="Game/Level1Bg"]
+
+[node name="Collider2" type="CollisionShape2D" parent="Game/Level1Bg/Solid2"]
+position = Vector2( -19, 151.75 )
+shape = SubResource( 2 )
+
+[node name="Collider3" type="CollisionShape2D" parent="Game/Level1Bg/Solid2"]
+position = Vector2( 312, 152 )
+shape = SubResource( 2 )
+
+[node name="Void" type="StaticBody2D" parent="Game/Level1Bg" groups=["void"]]
+collision_layer = 7
+
+[node name="Collider" type="CollisionPolygon2D" parent="Game/Level1Bg/Void"]
+polygon = PoolVector2Array( 2, 8, 2, 111, 81, 32, 81, 0, 2, 0 )
+
+[node name="Collider2" type="CollisionPolygon2D" parent="Game/Level1Bg/Void"]
+polygon = PoolVector2Array( 211, -6, 211, 32, 290, 112, 290, -6 )
+
+[node name="Collider3" type="CollisionPolygon2D" parent="Game/Level1Bg/Void"]
+polygon = PoolVector2Array( 2, 191, 2, 240, 290, 240, 290, 191 )
+
+[node name="Player" parent="Game" instance=ExtResource( 2 )]
+position = Vector2( 147, 114 )
+normal_tex = ExtResource( 3 )
+
+[node name="Player2" parent="Game" instance=ExtResource( 2 )]
+position = Vector2( 88, 118 )
+squish_tex = SubResource( 6 )
+normal_tex = ExtResource( 10 )
+my_device = 1
+
+[node name="Player3" parent="Game" instance=ExtResource( 2 )]
+position = Vector2( 148, 166 )
+squish_tex = ExtResource( 4 )
+normal_tex = ExtResource( 12 )
+my_device = 2
+
+[node name="Player4" parent="Game" instance=ExtResource( 2 )]
+position = Vector2( 228, 123 )
+squish_tex = ExtResource( 14 )
+normal_tex = ExtResource( 13 )
+my_device = 3
+
+[node name="Paper Spawner" type="Node2D" parent="Game"]
+script = ExtResource( 6 )
+paper_scene = ExtResource( 7 )
+destroy_scene = ExtResource( 26 )
+
+[node name="TL" type="Node2D" parent="Game/Paper Spawner"]
+position = Vector2( 4, -18 )
+
+[node name="BR" type="Node2D" parent="Game/Paper Spawner"]
+position = Vector2( 286, -15 )
+
+[node name="Spawn Timer" type="Timer" parent="Game/Paper Spawner"]
+wait_time = 0.1
+autostart = true
+
+[node name="PaperArea" type="CollisionPolygon2D" parent="Game/Paper Spawner"]
+visible = false
+polygon = PoolVector2Array( 87, 43, 6, 125, 6, 179, 287, 180, 288, 125, 206, 43 )
+
+[node name="Pedestrian Spawner" type="Node2D" parent="Game"]
+position = Vector2( 98, 35 )
+script = ExtResource( 16 )
+pedestrians = [ ExtResource( 17 ), ExtResource( 19 ) ]
+
+[node name="Timer" type="Timer" parent="Game/Pedestrian Spawner"]
+wait_time = 10.0
+autostart = true
+
+[node name="Pedestrian Trap" type="Area2D" parent="Game/Pedestrian Spawner"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 18 )
+
+[node name="Collider" type="CollisionShape2D" parent="Game/Pedestrian Spawner/Pedestrian Trap"]
+position = Vector2( -81, 117 )
+shape = SubResource( 7 )
+
+[node name="new_target" type="Node2D" parent="Game/Pedestrian Spawner/Pedestrian Trap"]
+position = Vector2( -126, 116 )
+
+[node name="Pedestrian Trap2" type="Area2D" parent="Game/Pedestrian Spawner"]
+position = Vector2( 255, 0 )
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 18 )
+
+[node name="Collider" type="CollisionShape2D" parent="Game/Pedestrian Spawner/Pedestrian Trap2"]
+position = Vector2( -81, 117 )
+shape = SubResource( 7 )
+
+[node name="new_target" type="Node2D" parent="Game/Pedestrian Spawner/Pedestrian Trap2"]
+position = Vector2( -30, 119 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+position = Vector2( 170, 120 )
+current = true
+script = ExtResource( 5 )
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 15 )
+volume_db = -6.992
+autoplay = true
+
+[node name="Game BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -8.0
+script = ExtResource( 20 )
+
+[node name="Tween" type="Tween" parent="Game BGM"]
+
+[connection signal="timeout" from="HUD/Win Control/Timer" to="HUD/Win Control" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Game/Paper Spawner/Spawn Timer" to="Game/Paper Spawner" method="_on_Spawn_Timer_timeout"]
+[connection signal="timeout" from="Game/Pedestrian Spawner/Timer" to="Game/Pedestrian Spawner" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Game/Pedestrian Spawner/Pedestrian Trap" to="Game/Pedestrian Spawner/Pedestrian Trap" method="_on_Pedestrian_Trap_body_entered"]
+[connection signal="body_entered" from="Game/Pedestrian Spawner/Pedestrian Trap2" to="Game/Pedestrian Spawner/Pedestrian Trap2" method="_on_Pedestrian_Trap_body_entered"]

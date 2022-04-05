@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Leafblower Loop.wav-81a76a7a05a327d6ce80f01865cdbefc.sample"
+
+[deps]
+
+source_file="res://player/Leafblower Loop.wav"
+dest_files=[ "res://.import/Leafblower Loop.wav-81a76a7a05a327d6ce80f01865cdbefc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

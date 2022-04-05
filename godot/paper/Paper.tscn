@@ -1,0 +1,23 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://paper/Paper.gd" type="Script" id=1]
+[ext_resource path="res://paper/paper_tex_1.tres" type="Texture" id=2]
+[ext_resource path="res://paper/paper_tex_3.tres" type="Texture" id=3]
+[ext_resource path="res://paper/paper_tex_2.tres" type="Texture" id=4]
+[ext_resource path="res://paper/paper_tex_4.tres" type="Texture" id=5]
+[ext_resource path="res://paper/paper_tex_5.tres" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.0
+
+[node name="Paper" type="KinematicBody2D" groups=["paper"]]
+z_as_relative = false
+collision_layer = 2
+script = ExtResource( 1 )
+textures = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+
+[node name="GFX" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

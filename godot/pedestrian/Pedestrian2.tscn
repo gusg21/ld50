@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://character/characters.png" type="Texture" id=1]
+[ext_resource path="res://shadow/Shadow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://pedestrian/Pedestrian.gd" type="Script" id=3]
+[ext_resource path="res://elliott.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 28, 84, 18, 21 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 1.0
+height = 12.0
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 1
+outline_color = Color( 0.396078, 0.427451, 0.443137, 1 )
+font_data = ExtResource( 4 )
+
+[node name="Pedestrian" type="KinematicBody2D" groups=["pedestrian"]]
+z_as_relative = false
+collision_layer = 6
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="Shadow20" parent="." instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 0, -0.5 )
+
+[node name="GFX" type="Sprite" parent="."]
+position = Vector2( 0, -10.5 )
+texture = SubResource( 4 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.5 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Grabbed" type="Label" parent="."]
+margin_left = -19.0
+margin_top = -35.0
+margin_right = 21.0
+margin_bottom = -21.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
